@@ -36,14 +36,21 @@ func Constructor(nums []int) Solution {
     indices := make([][]int, len(nums))
     // array count
     range = max(nums) - min(nums)
-    counts = make([]int, range) //goes across all numbers
-    for i := range nums {
-        counts[num] += 1
+    counts = make([]int, range) //covers all numbers
+    for _, num := range nums {
+        counts[num] += 1 //tracks the number of occurences
+    } //if the number doesn't occur its count is zero
+    
+    for index, _ := range indices {
+        indices[index] = make([]int, counts[index] + 1)
+        //each list is the length of #occurrences
     }
     
-    for i := range indices {
-        indices[i] = make([]int, counts[i])
+    for indx, num := range nums {
+        indices[num][0] ++ //where to place next found index
+        indices[[indices[num][0]]] = indx //store location of num
     }
+    
     s = Solution{nums: nums, indices:indices}
     return &s
 }
