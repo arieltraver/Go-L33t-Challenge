@@ -4,10 +4,8 @@
     -- store every letter in a linked list. compare the lists char by char. better because linked lists are mutable and space efficient
     -- no need for storage, just iterate through both lists char by char. make a 'next' function which helps you ignore */
 
-//import("fmt")
-//okay so the solution apparently was not all that fast? going to look into this one.
-
-func arrayStringsAreEqual(word1 []string, word2 []string) bool {
+//import ("fmt")
+/*func arrayStringsAreEqual(word1 []string, word2 []string) bool {
     
     char1 := 0
     char2 := 0
@@ -49,4 +47,16 @@ func arrayStringsAreEqual(word1 []string, word2 []string) bool {
     } else {
         return true;
     }
+}*/
+import ("strings")
+func arrayStringsAreEqual(word1 []string, word2 []string) bool {
+    var s1 strings.Builder
+    var s2 strings.Builder
+    for _, str1 := range(word1) {
+        s1.WriteString(str1)
+    }
+    for _, str2 := range(word2) {
+        s2.WriteString(str2)
+    }
+    return (s1.String() == s2.String())
 }
