@@ -2,7 +2,8 @@
 //to help with data structure implementations
 //because apparently good Gogrammers use slices for everything
 //and honestly
-//yeah
+//i think there are genuine use cases for REAL linked lists, not slices, for algorithms
+//in the end, it's all an array in memory, right?
 
 func appendSlices(a []int, b []int) {
   a = append(a, b...)
@@ -35,4 +36,13 @@ func pushBack(a []int, val int) {
 func fastDelete(a []int, i int) {
   a[i] = a[-1]
   a = a[:a.len - 1]
+}
+
+func reverse(lst []int) []int {
+    l := len(lst)
+    for index, val := range(lst[0:(l/2)]) {
+        lst[index] = lst[l-index-1]
+        lst[l-index-1] = val
+    }
+    return lst
 }
