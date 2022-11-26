@@ -1,0 +1,47 @@
+
+//pascals triangle lol
+
+//recursive brute force solution
+
+/** func uniquePaths(m int, n int) int {
+    if (m <= 1 || n <= 1) {
+        return 1;
+    }
+    return uniquePaths(m -1, n) + uniquePaths(m, n - 1)
+} **/
+
+//fast solution using combinations
+import ("math/big")
+//so essentially you need this package because otherwise you get overflow. but it's still faster than the recursive or memoization methods
+
+func intFact(start *big.Int, end *big.Int) *big.Int {
+    one := big.NewInt(int64(1))
+    var result = big.NewInt(1)
+    for start.Cmp(end) < 1 {
+        result.Mul(result, start)
+        start.Add(start, one)
+    }
+    return result
+}
+
+func uniquePaths(m int, n int) int {
+    large := big.NewInt(int64(m + n - 2))
+    small := big.NewInt(int64(m - 1))
+    
+    mid := big.NewInt(int64(n - 1))
+    if (small.Cmp(mid) > 0) {
+        temp := small
+        small = mid
+        mid = temp
+    }
+    
+    
+    one := big.NewInt(int64(1))
+    one2 := big.NewInt(int64(1))
+    
+    smallFact := intFact(one, small)
+    largeFact := intFact(mid.Add(mid, one2), large)
+    
+    result := largeFact.Div(largeFact, smallFact).Int64()
+    return int(result)
+}
