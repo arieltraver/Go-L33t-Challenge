@@ -1,0 +1,11 @@
+//eventually will replace with some kind of faster log time way of doing this
+//as per wikipedia's page on factorial algorithms
+//for now, the basics
+
+func intFact(start int, end int) int {
+    result := 1
+    for i := start; i <= end; i ++ {
+        result *= i
+    }
+    return result
+}
