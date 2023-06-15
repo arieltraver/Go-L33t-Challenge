@@ -62,9 +62,17 @@ func (hp *heap) sift(childIndex int) {
 }
 
 func(hp *heap) insert(val int) {
-
+	if hp.l == hp.cap {
+		fmt.Println("capacity exceeded, copying")
+		hp.cap += 1
+	}
+	hp.arr = append(hp.arr, val)
+	hp.l += 1
+	hp.sift(hp.l - 1)
 }
 
-func(hp *heap) insert(n int) {
-
+func(hp *heap) pop(index int) {
+	hp.swap(0, l-1)
+	hp.arr = hp.arr[:l-1]
+	hp.sink(0)
 }
